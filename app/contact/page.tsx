@@ -7,10 +7,10 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-16">
-            <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6 text-gradient">
+            <h1 className="font-heading text-6xl sm:text-7xl md:text-8xl font-bold mb-8 text-gradient">
               Get in Touch
             </h1>
-            <p className="text-text-secondary text-xl max-w-2xl mx-auto">
+            <p className="text-text-secondary text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
               Have a project idea? Want to collaborate? Or just want to say hi?
             </p>
           </div>

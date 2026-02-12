@@ -22,10 +22,10 @@ export default function TimelinePage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-20">
-            <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6 text-gradient">
+            <h1 className="font-heading text-6xl sm:text-7xl md:text-8xl font-bold mb-6 text-gradient">
               Timeline
             </h1>
-            <p className="text-text-secondary text-xl">
+            <p className="text-text-secondary text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
               A journey through creative milestones—no dates, just moments that mattered
             </p>
           </div>
