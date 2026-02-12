@@ -1,0 +1,64 @@
+---
+title: "Building THE EYE"
+date: "2024-02-01"
+description: "The story behind creating an interactive oracle—an SVG eye that watches, breathes, and delivers daily insights."
+tags: ["project", "svg", "animation", "AI"]
+featured: true
+---
+
+# Building THE EYE
+
+THE EYE started as a simple idea: what if your portfolio could watch you back? But like all good creative projects, it evolved into something much more interesting.
+
+## The Concept
+
+An eye that:
+- **Tracks** your cursor with physics-based movement
+- **Blinks** autonomously, like a living thing
+- **Breathes** with organic pupil dilation
+- **Jitters** with subtle micro-movements
+- **Delivers** AI-generated daily insights
+
+## The Technical Challenge
+
+### Physics-Based Movement
+
+The tracking needed to feel natural, not mechanical. The solution was a lerp (linear interpolation) with a carefully tuned factor:
+
+```typescript
+const lerpFactor = 0.12
+currentPos.x += (targetPos.x - currentPos.x) * lerpFactor
+currentPos.y += (targetPos.y - currentPos.y) * lerpFactor
+```
+
+This creates a smooth, weighted following motion that feels organic.
+
+### Autonomous Behavior
+
+The eye needed to feel alive even when you weren't moving. This meant:
+
+- **Random blink intervals** (3-7 seconds)
+- **Sine wave breathing** for pupil dilation
+- **Micro-jitter** that triggers randomly
+
+```javascript
+// Breathing effect
+const scale = 1 + Math.sin(frame * 0.01) * 0.05
+```
+
+### The Oracle Feature
+
+Integrating Gemini AI to generate daily insights added a mystical element. The eye became more than decoration—it became an interactive experience that offers wisdom.
+
+## The Result
+
+THE EYE has become a signature element of The Island. It sits in the navigation, watching over every page, occasionally offering insights to curious visitors.
+
+## Lessons Learned
+
+1. **Physics matters**: Small details in movement create believability
+2. **Autonomy adds life**: Random, organic behaviors make things feel alive
+3. **Constraints breed creativity**: Working with SVG forced elegant solutions
+4. **Details compound**: Each small touch (jitter, breathing, blinking) adds up
+
+THE EYE watches over The Island, a guardian and guide for all who visit.

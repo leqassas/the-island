@@ -1,0 +1,95 @@
+---
+title: "Where Neural Networks Meet Art"
+date: "2024-02-10"
+description: "Exploring the Connectome project—800 neurons in 3D space, simulating the beautiful complexity of the brain."
+tags: ["neural networks", "3D", "WebGL", "science"]
+featured: true
+---
+
+# Where Neural Networks Meet Art
+
+The human brain is the most complex structure we know of in the universe. About 86 billion neurons, each connected to thousands of others, forming a network of staggering complexity. **Connectome** is my attempt to capture a tiny slice of that beauty.
+
+## The Vision
+
+Create a real-time 3D simulation of a neural network that's both scientifically inspired and visually stunning. Not just dots and lines, but a living system with:
+
+- Multiple neuron types (pyramidal, interneuron, sensory)
+- Realistic firing patterns
+- Bloom post-processing for that ethereal glow
+- Interactive controls to explore and experiment
+
+## The Implementation
+
+### React Three Fiber
+
+Building 3D experiences in React used to be painful. React Three Fiber changed that. Here's how simple it is to create a neuron:
+
+```jsx
+<mesh position={position}>
+  <sphereGeometry args={[0.5, 16, 16]} />
+  <meshStandardMaterial 
+    color={isActive ? '#6366f1' : '#333'} 
+    emissive={isActive ? '#6366f1' : '#000'}
+    emissiveIntensity={isActive ? 2 : 0}
+  />
+</mesh>
+```
+
+### The Simulation
+
+Each neuron has:
+- **Excitation level**: How active it is
+- **Connections**: To neighboring neurons
+- **Firing pattern**: When it sends signals
+
+Signals propagate through the network in waves, creating mesmerizing patterns:
+
+```javascript
+if (neuron.excitation > threshold) {
+  neuron.fire()
+  neuron.connections.forEach(target => {
+    target.excitation += 0.3
+  })
+}
+```
+
+### Post-Processing Magic
+
+The bloom effect transforms the visualization from technical to transcendent:
+
+```jsx
+<EffectComposer>
+  <Bloom 
+    luminanceThreshold={0.2}
+    luminanceSmoothing={0.9}
+    intensity={1.5}
+  />
+</EffectComposer>
+```
+
+## The Science Meets Beauty
+
+What makes Connectome special is the balance between accuracy and aesthetics:
+
+- **Scientifically inspired**: Neuron types, connections, and firing patterns based on real neuroscience
+- **Artistically rendered**: Glowing nodes, flowing signals, bloom effects
+- **Interactively exploratory**: Orbit controls, adjustable parameters, real-time simulation
+
+## The Experience
+
+Watching the network in action is mesmerizing. Signals cascade through clusters of neurons. Patterns emerge and dissolve. It's a reminder that beauty exists in complexity, in systems, in the emergent properties of simple rules repeated billions of times.
+
+## Future Directions
+
+Imagine:
+- Adding realistic neurotransmitter simulation
+- Implementing different brain regions
+- Training the network to perform simple tasks
+- VR support for immersive exploration
+
+The brain is an endless source of inspiration. Connectome is just the beginning.
+
+---
+
+*Explore the full Connectome simulation in the Showcase.*
