@@ -2,6 +2,7 @@ import { getBlogPost, getBlogPosts } from '@/lib/mdx'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import ScrollReveal from '@/components/ScrollReveal'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 export async function generateStaticParams() {
   const posts = getBlogPosts()
@@ -74,7 +75,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <ScrollReveal delay={0.2}>
           <div className="glass rounded-2xl p-8 md:p-12">
             <div className="blog-content prose prose-invert prose-lg max-w-none">
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              <MDXRemote source={post.content} />
             </div>
           </div>
         </ScrollReveal>
