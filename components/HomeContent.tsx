@@ -193,16 +193,20 @@ export default function HomeContent({ featuredPosts }: HomeContentProps) {
                   {Array.from({ length: 30 }).map((_, i) => {
                     const cx = 100 + Math.cos(i * 0.7) * (30 + i * 2.2)
                     const cy = 100 + Math.sin(i * 0.9) * (30 + i * 2)
+                    // Deterministic pseudo-random based on index to avoid hydration mismatch
+                    const pseudoR = 2 + ((i * 7 + 3) % 10) / 5
+                    const pseudoOpacity = 0.5 + ((i * 13 + 5) % 10) / 20
+                    const pseudoDuration = 2 + ((i * 11 + 7) % 10) / 5
                     return (
                       <g key={i}>
                         <circle
                           cx={cx}
                           cy={cy}
-                          r={2 + Math.random() * 2}
+                          r={pseudoR}
                           fill="#6366f1"
-                          opacity={0.5 + Math.random() * 0.5}
+                          opacity={pseudoOpacity}
                           className="animate-pulse"
-                          style={{ animationDelay: `${i * 0.15}s`, animationDuration: `${2 + Math.random() * 2}s` }}
+                          style={{ animationDelay: `${i * 0.15}s`, animationDuration: `${pseudoDuration}s` }}
                         />
                         {i > 0 && (
                           <line

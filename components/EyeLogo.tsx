@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, useId } from 'react'
 
 interface EyeLogoProps {
   size?: number
@@ -19,7 +19,8 @@ export default function EyeLogo({ size = 32, className = '' }: EyeLogoProps) {
   const jitterRef = useRef({ x: 0, y: 0 })
   const stareTimeRef = useRef(0)
   const lastMouseMoveRef = useRef(Date.now())
-  const uniqueId = useRef(`eye-${Math.random().toString(36).slice(2, 9)}`)
+  const uniqueId = useId()
+  const id = uniqueId.replace(/:/g, '-')
 
   const isLarge = size >= 80
 
@@ -169,7 +170,6 @@ export default function EyeLogo({ size = 32, className = '' }: EyeLogoProps) {
     return () => cancelAnimationFrame(rafId)
   }, [])
 
-  const id = uniqueId.current
   const eyelidOpenY = 50 - 28 * (1 - blinkProgress)
   const eyelidCloseY = 50 + 28 * (1 - blinkProgress)
 
