@@ -19,8 +19,8 @@ export default function EyeLogo({ size = 32, className = '' }: EyeLogoProps) {
   const jitterRef = useRef({ x: 0, y: 0 })
   const stareTimeRef = useRef(0)
   const lastMouseMoveRef = useRef(Date.now())
-  const uniqueId = useId()
-  const id = uniqueId.replace(/:/g, '-')
+  const reactId = useId()
+  const svgId = reactId.replace(/:/g, '-')
 
   const isLarge = size >= 80
 
@@ -184,7 +184,7 @@ export default function EyeLogo({ size = 32, className = '' }: EyeLogoProps) {
     >
       <defs>
         {/* Iris gradient with dynamic hue */}
-        <radialGradient id={`${id}-irisGradient`}>
+        <radialGradient id={`${svgId}-irisGradient`}>
           <stop offset="0%" stopColor={`hsl(${240 + irisHue}, 80%, 65%)`} />
           <stop offset="40%" stopColor={`hsl(${255 + irisHue}, 70%, 55%)`} />
           <stop offset="80%" stopColor={`hsl(${270 + irisHue}, 60%, 40%)`} />
@@ -192,44 +192,44 @@ export default function EyeLogo({ size = 32, className = '' }: EyeLogoProps) {
         </radialGradient>
 
         {/* Iris texture pattern */}
-        <radialGradient id={`${id}-irisTexture`}>
+        <radialGradient id={`${svgId}-irisTexture`}>
           <stop offset="0%" stopColor="rgba(255,255,255,0.15)" />
           <stop offset="50%" stopColor="rgba(255,255,255,0)" />
           <stop offset="100%" stopColor="rgba(0,0,0,0.3)" />
         </radialGradient>
 
         {/* Limbal ring gradient */}
-        <radialGradient id={`${id}-limbalRing`}>
+        <radialGradient id={`${svgId}-limbalRing`}>
           <stop offset="85%" stopColor="transparent" />
           <stop offset="95%" stopColor="rgba(30, 20, 60, 0.6)" />
           <stop offset="100%" stopColor="rgba(20, 10, 40, 0.8)" />
         </radialGradient>
 
         {/* Sclera gradient for realism */}
-        <radialGradient id={`${id}-scleraGradient`} cx="50%" cy="50%">
+        <radialGradient id={`${svgId}-scleraGradient`} cx="50%" cy="50%">
           <stop offset="0%" stopColor={isIrritated ? '#fff0f0' : '#fafafa'} />
           <stop offset="70%" stopColor={isIrritated ? '#ffe8e8' : '#f0f0f0'} />
           <stop offset="100%" stopColor={isIrritated ? '#ffd0d0' : '#e0e0e0'} />
         </radialGradient>
 
         {/* Cornea highlight */}
-        <radialGradient id={`${id}-corneaHighlight`} cx="35%" cy="30%">
+        <radialGradient id={`${svgId}-corneaHighlight`} cx="35%" cy="30%">
           <stop offset="0%" stopColor="rgba(255,255,255,0.5)" />
           <stop offset="100%" stopColor="rgba(255,255,255,0)" />
         </radialGradient>
 
         {/* Eye shape clip path - almond shape */}
-        <clipPath id={`${id}-eyeClip`}>
+        <clipPath id={`${svgId}-eyeClip`}>
           <path d="M 5,50 Q 25,20 50,18 Q 75,20 95,50 Q 75,80 50,82 Q 25,80 5,50 Z" />
         </clipPath>
 
         {/* Eyelid clip for blink */}
-        <clipPath id={`${id}-eyelidClip`}>
+        <clipPath id={`${svgId}-eyelidClip`}>
           <path d={`M 0,${eyelidOpenY} Q 50,${eyelidOpenY - 15} 100,${eyelidOpenY} L 100,${eyelidCloseY} Q 50,${eyelidCloseY + 15} 0,${eyelidCloseY} Z`} />
         </clipPath>
 
         {/* Pupil gradient */}
-        <radialGradient id={`${id}-pupilGradient`}>
+        <radialGradient id={`${svgId}-pupilGradient`}>
           <stop offset="0%" stopColor="#000000" />
           <stop offset="70%" stopColor="#050510" />
           <stop offset="100%" stopColor="#0a0a1a" />
@@ -237,7 +237,7 @@ export default function EyeLogo({ size = 32, className = '' }: EyeLogoProps) {
 
         {/* Glow filter for large eye */}
         {isLarge && (
-          <filter id={`${id}-glow`} x="-50%" y="-50%" width="200%" height="200%">
+          <filter id={`${svgId}-glow`} x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="2" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
@@ -253,15 +253,15 @@ export default function EyeLogo({ size = 32, className = '' }: EyeLogoProps) {
       />
 
       {/* Eye contents clipped to almond shape + eyelid */}
-      <g clipPath={`url(#${id}-eyeClip)`}>
-        <g clipPath={`url(#${id}-eyelidClip)`}>
+      <g clipPath={`url(#${svgId}-eyeClip)`}>
+        <g clipPath={`url(#${svgId}-eyelidClip)`}>
           {/* Sclera (eye white) with realistic gradient */}
           <ellipse
             cx="50"
             cy="50"
             rx="42"
             ry="32"
-            fill={`url(#${id}-scleraGradient)`}
+            fill={`url(#${svgId}-scleraGradient)`}
           />
 
           {/* Blood vessel hints for realism (large eye only) */}
@@ -279,7 +279,7 @@ export default function EyeLogo({ size = 32, className = '' }: EyeLogoProps) {
             cx={50 + pupilPos.x}
             cy={50 + pupilPos.y}
             r="18"
-            fill={`url(#${id}-irisGradient)`}
+            fill={`url(#${svgId}-irisGradient)`}
           />
 
           {/* Iris fiber texture */}
@@ -287,7 +287,7 @@ export default function EyeLogo({ size = 32, className = '' }: EyeLogoProps) {
             cx={50 + pupilPos.x}
             cy={50 + pupilPos.y}
             r="18"
-            fill={`url(#${id}-irisTexture)`}
+            fill={`url(#${svgId}-irisTexture)`}
           />
 
           {/* Iris fiber lines (large eye only) */}
@@ -327,7 +327,7 @@ export default function EyeLogo({ size = 32, className = '' }: EyeLogoProps) {
             cx={50 + pupilPos.x}
             cy={50 + pupilPos.y}
             r={8 * pupilScale}
-            fill={`url(#${id}-pupilGradient)`}
+            fill={`url(#${svgId}-pupilGradient)`}
           />
 
           {/* Cornea highlight / specular reflection */}
@@ -336,7 +336,7 @@ export default function EyeLogo({ size = 32, className = '' }: EyeLogoProps) {
             cy={50 + pupilPos.y}
             rx="18"
             ry="18"
-            fill={`url(#${id}-corneaHighlight)`}
+            fill={`url(#${svgId}-corneaHighlight)`}
           />
 
           {/* Primary light reflection */}

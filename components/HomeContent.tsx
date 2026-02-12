@@ -193,7 +193,8 @@ export default function HomeContent({ featuredPosts }: HomeContentProps) {
                   {Array.from({ length: 30 }).map((_, i) => {
                     const cx = 100 + Math.cos(i * 0.7) * (30 + i * 2.2)
                     const cy = 100 + Math.sin(i * 0.9) * (30 + i * 2)
-                    // Deterministic pseudo-random based on index to avoid hydration mismatch
+                    // Deterministic pseudo-random using linear congruential formula (index * prime + offset) % range
+                    // to produce varied but stable values across server/client renders
                     const pseudoR = 2 + ((i * 7 + 3) % 10) / 5
                     const pseudoOpacity = 0.5 + ((i * 13 + 5) % 10) / 20
                     const pseudoDuration = 2 + ((i * 11 + 7) % 10) / 5

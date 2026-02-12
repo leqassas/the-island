@@ -35,7 +35,7 @@ export default function AnimatedText({
     })
   }, [delay])
 
-  const words = text.split(' ')
+  const words = text.split(/\s+/).filter(Boolean)
 
   return (
     <div ref={containerRef} style={{ perspective: '600px' }}>
